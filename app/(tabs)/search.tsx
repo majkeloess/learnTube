@@ -1,11 +1,15 @@
 import { View, Text } from "react-native";
-import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+import React from "react";
+import SearchForm from "@/components/SearchForm";
 const SearchScreen = () => {
   return (
-    <View>
-      <Text>SearchScreen</Text>
-    </View>
+    <SafeAreaView>
+      <View className="mt-11 flex justify-center mx-6">
+        <SearchForm width="345" />
+      </View>
+    </SafeAreaView>
   );
 };
 
