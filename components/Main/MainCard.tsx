@@ -9,7 +9,9 @@ const MainCard = ({ query }: { query: string }) => {
         <Text className="text-secondary text-[24px] font-psemibold600">
           {query}
         </Text>
-        <Text className="font-pregular400 underline">Show more</Text>
+        <Text className="font-pregular400 text-secondary underline">
+          Show more
+        </Text>
       </View>
       <ScrollView
         horizontal={true}

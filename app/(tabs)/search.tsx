@@ -1,14 +1,28 @@
-import { View, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, SafeAreaView, ScrollView } from "react-native";
 
 import React from "react";
 import SearchForm from "@/components/SearchForm";
+import Sort from "@/components/Search/Sort";
+import SearchVideo from "@/components/Search/SearchVideo";
 const SearchScreen = () => {
   return (
     <SafeAreaView>
-      <View className="mt-11 flex justify-center mx-6">
+      <ScrollView className="mt-11 mx-6" showsVerticalScrollIndicator={false}>
         <SearchForm width="345" />
-      </View>
+        <View className="mt-4">
+          <Text className="font-pregular400 text-[10px]">
+            1157 result found for:{" "}
+            <Text className="font-psemibold600">"React Native"</Text>
+          </Text>
+          <Sort />
+        </View>
+        <View className="mt-4">
+          <SearchVideo />
+          <SearchVideo />
+          <SearchVideo />
+          <SearchVideo />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

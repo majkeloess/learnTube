@@ -7,7 +7,7 @@ import MainCard from "@/components/Main/MainCard";
 const MainScreen = () => {
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex flex-row justify-evenly items-center mt-11">
           <SearchForm width="297" />
           <SettingsNavigation />
