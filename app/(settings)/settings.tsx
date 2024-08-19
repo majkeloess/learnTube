@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import React from "react";
 import Reminder from "@/components/Sett/Reminder";
 import SettingsHeader from "@/components/Sett/SettingsHeader";
