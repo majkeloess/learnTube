@@ -11,6 +11,7 @@ const SettingsScreen = () => {
       <SettingsUser />
       <View className="h-0.5 bg-secondary"></View>
       <Reminder />
+      {/* TODO: NOTIFICATIONS */}
     </SafeAreaView>
   );
 };
