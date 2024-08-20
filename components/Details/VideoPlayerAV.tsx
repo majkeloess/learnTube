@@ -4,7 +4,6 @@ import { Video, ResizeMode } from "expo-av";
 
 const VideoPlayerAV = () => {
   const video = useRef(null);
-  const [status, setStatus] = useState({});
 
   return (
     <View className="flex justify-center items-center">
@@ -17,7 +16,6 @@ const VideoPlayerAV = () => {
         }}
         useNativeControls
         isLooping
-        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
       />
     </View>
   );

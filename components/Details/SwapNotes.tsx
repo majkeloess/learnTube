@@ -7,7 +7,7 @@ import NotesButton from "./NotesButton";
 const SwapNotes = () => {
   return (
     <View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} className="h-[200px]">
         <NotesBox
           time="2:08"
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque venenatis semper purus a accumsan. Donec accumsan pulvinar metus, euismod lacinia libero congue non."
@@ -23,7 +23,7 @@ const SwapNotes = () => {
         />
       </ScrollView>
 
-      <View>
+      <View className="flex justify-center items-center mt-6">
         <NotesForm />
         <NotesButton />
       </View>

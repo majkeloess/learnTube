@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import SwapStatsBox from "./SwapStatsBox";
 
-import { LikesIcon, AirPlayIcon } from "@/constants/png";
+import { LikesIcon, ViewsIcon } from "@/constants/png";
 
 const SwapDetails = () => {
   return (
@@ -21,7 +21,7 @@ const SwapDetails = () => {
       <View>
         <Text className="font-psemibold600 text-[10px] mt-2">Statistics</Text>
         <View className="flex flex-row items-center justify-between mt-2">
-          <SwapStatsBox image={AirPlayIcon} text={"25222222 views"} />
+          <SwapStatsBox image={ViewsIcon} text={"25222222 views"} />
           <SwapStatsBox image={LikesIcon} text={"12345 likes"} />
         </View>
       </View>

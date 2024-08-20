@@ -1,10 +1,12 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, Pressable } from "react-native";
 import React from "react";
 import VideoPlayerAV from "@/components/Details/VideoPlayerAV";
 import Avatar from "@/components/Avatar";
 import SwapContainer from "@/components/Details/SwapContainer";
-
+import { useRouter } from "expo-router";
 const DetailsScreen = () => {
+  const route = useRouter();
+
   return (
     <SafeAreaView>
       <VideoPlayerAV />
@@ -14,7 +16,13 @@ const DetailsScreen = () => {
         </Text>
 
         <View className="flex flex-row justify-start items-center space-x-2 mt-6">
-          <Avatar />
+          <Pressable
+            onPress={() => {
+              route.back();
+            }}
+          >
+            <Avatar />
+          </Pressable>
           <Text className="text-[14px] font-pbold700">Channel name</Text>
         </View>
 
