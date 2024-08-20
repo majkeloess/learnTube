@@ -8,7 +8,7 @@ const MainCard = ({ query }: { query: string }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchVideo(query + " tutorial", 5, sortBy[2]);
+      const res = await fetchVideo(query + " tutorial", 5);
       setData(res);
     };
 
@@ -34,7 +34,7 @@ const MainCard = ({ query }: { query: string }) => {
           <MainVideo
             key={data.id.videoId}
             id={data.id.videoId}
-            publishedAt={data.snippet.publishedAt}
+            publishedAt={data.snippret.publishedAt}
             imageUrl={data.snippet.thumbnails.medium.url}
             title={data.snippet.title}
           />
