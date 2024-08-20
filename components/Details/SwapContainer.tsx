@@ -1,42 +1,31 @@
-import { View, Text, Pressable } from "react-native";
+import { View } from "react-native";
 import React, { useState } from "react";
 import SwapDetails from "./SwapDetails";
 import SwapNotes from "./SwapNotes";
+import SwapPress from "./SwapPress";
 
 const SwapContainer = () => {
-  const [active, setActive] = useState(0);
-
+  const [active, setActive] = useState(true);
+  const handleActive = () => {
+    setActive(!active);
+  };
   return (
     <View>
-      <View className="flex flex-row justify-around font-psemibold600">
-        <Pressable
-          onPress={() => {
-            setActive(0);
-          }}
-          className={`w-1/2  border-b-2 ${
-            active == 0 ? "border-b-secondary" : "border-b-main"
-          }`}
-        >
-          <Text className=" font-psemibold600 text-[12px] text-center">
-            Details
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            setActive(1);
-          }}
-          className={`w-1/2 border-b-2 ${
-            active == 1 ? "border-b-secondary" : "border-b-main"
-          }`}
-        >
-          <Text className=" font-psemibold600 text-[12px] text-center">
-            Notes
-          </Text>
-        </Pressable>
+      <View className="flex flex-row justify-around">
+        <SwapPress
+          text="Details"
+          handleActive={handleActive}
+          typeActive={true}
+          active={active}
+        />
+        <SwapPress
+          text="Notes"
+          handleActive={handleActive}
+          typeActive={false}
+          active={active}
+        />
       </View>
-      <View className="mt-4">
-        {active == 0 ? <SwapDetails /> : <SwapNotes />}
-      </View>
+      <View className="mt-4">{active ? <SwapDetails /> : <SwapNotes />}</View>
     </View>
   );
 };
