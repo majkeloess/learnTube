@@ -8,7 +8,7 @@ const SearchForm = ({ width }: { width: string }) => {
     >
       <SearchSvg />
       <TextInput
-        className="text-secondary "
+        className="text-secondary w-[260px]"
         placeholderTextColor={colors.main}
         placeholder="Search videos"
       />

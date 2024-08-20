@@ -5,7 +5,7 @@ import Avatar from "@/components/Avatar";
 import SwapContainer from "@/components/Details/SwapContainer";
 import { useRouter } from "expo-router";
 const DetailsScreen = () => {
-  const route = useRouter();
+  const router = useRouter();
 
   return (
     <SafeAreaView>
@@ -18,7 +18,7 @@ const DetailsScreen = () => {
         <View className="flex flex-row justify-start items-center space-x-2 mt-6">
           <Pressable
             onPress={() => {
-              route.back();
+              router.back();
             }}
           >
             <Avatar />
