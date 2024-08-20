@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const DetailsScreen = () => {
+const SwapNotes = () => {
   return (
     <View>
-      <Text>DetailsScreen</Text>
+      <Text>SwapNotes</Text>
     </View>
   )
 }
 
-export default DetailsScreen
+export default SwapNotes
