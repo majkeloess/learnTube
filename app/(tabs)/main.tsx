@@ -8,8 +8,8 @@ const MainScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="flex flex-row justify-evenly items-center mt-11">
-          <SearchForm width="297" />
+        <View className="flex flex-row justify-evenly items-center mt-11 mx-4">
+          <SearchForm width="300" />
           <SettingsNavigation />
         </View>
         <View className="mt-4">

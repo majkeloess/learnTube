@@ -7,7 +7,7 @@ const Sort = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  //  TODO LIST WITH STATE, BACKGROUND
+  //  TODO LIST WITH STATE+CONTEXT, BACKGROUND
   return (
     <View className="mt-2 ">
       <TouchableOpacity onPress={toggleModal}>
@@ -23,10 +23,12 @@ const Sort = () => {
         className="bg-opacity-50"
       >
         <View className="flex-1 align-middle justify-center items-center ">
-          <View className="bg-main w-[320px] h-[400px] p-6 rounded-3xl ">
+          <View className="bg-main w-[320px] h-[400px] p-6 rounded-3xl flex items-center">
             <View>
               <View>
-                <Text className="text-left">Sort records by:</Text>
+                <Text className="text-left text-white text-[18px] font-psemibold600">
+                  Sort records by:
+                </Text>
               </View>
 
               <Pressable
