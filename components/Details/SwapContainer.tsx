@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import React, { useState } from "react";
+
 import SwapDetails from "./SwapDetails";
 import SwapNotes from "./SwapNotes";
 import SwapPress from "./SwapPress";

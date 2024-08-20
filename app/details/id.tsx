@@ -13,7 +13,7 @@ const DetailsScreen = () => {
           Lorem ipsum dolor sit amet, consect...
         </Text>
 
-        <View className="flex flex-row justify-start items-center space-x-2 mt-4">
+        <View className="flex flex-row justify-start items-center space-x-2 mt-6">
           <Avatar />
           <Text className="text-[14px] font-pbold700">Channel name</Text>
         </View>
