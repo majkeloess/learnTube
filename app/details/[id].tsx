@@ -1,11 +1,28 @@
 import { View, Text, SafeAreaView, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import VideoPlayerAV from "@/components/Details/VideoPlayerAV";
 import Avatar from "@/components/Avatar";
 import SwapContainer from "@/components/Details/SwapContainer";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
+import { fetchDetails } from "@/utils/fetch";
+
 const DetailsScreen = () => {
   const router = useRouter();
+  const [data, setData] = useState({});
+  const {
+    id: [firstId],
+  } = useLocalSearchParams();
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetchDetails(firstId);
+      setData(res);
+    };
+
+    if (firstId) {
+      getData();
+    }
+  }, []);
 
   return (
     <SafeAreaView>
@@ -23,7 +40,9 @@ const DetailsScreen = () => {
           >
             <Avatar />
           </Pressable>
-          <Text className="text-[14px] font-pbold700">Channel name</Text>
+          <Text className="text-[14px] font-pbold700">
+            {data.snippet.channelTitle}
+          </Text>
         </View>
 
         <View className="mt-8">

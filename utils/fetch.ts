@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const KEY = process.env.YOUTUBE_API_KEY;
+const KEY = "AIzaSyCgNgEgB2dnu_JgQFtHp2pmDqrErn_dd9E";
+
+//to się przyda do modala
 const sortBy = ["dateDes", "dateAsc", "viewCount"];
 
 const fetchVideo = async (query: string, n: number, sort: string) => {
@@ -34,8 +36,8 @@ const fetchDetails = async (id: string) => {
 
 // async function test() {
 //   //const data = await fetchVideo("react", 20, sortBy[2]);
-//   //const data2 = await fetchDetails("0yORLdaSEXg");
-//   //console.log(data2);
+//   const data2 = await fetchDetails("0yORLdaSEXg");
+//   console.log(data2);
 // }
 
 // test();
