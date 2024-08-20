@@ -4,9 +4,6 @@ const KEY = process.env.YOUTUBE_API_KEY;
 const sortBy = ["dateDes", "dateAsc", "viewCount"];
 
 const fetchVideo = async (query: string, n: number, sort: string) => {
-  if (sort == "dateAsc" || sort == "dateDes") {
-  }
-
   const res = await axios.get("https://www.googleapis.com/youtube/v3/search", {
     params: {
       part: "snippet",
@@ -14,16 +11,33 @@ const fetchVideo = async (query: string, n: number, sort: string) => {
       type: "video",
       key: KEY,
       maxResults: n,
-      order: sort,
+      order: sort == "viewCount" ? sort : "date",
     },
   });
 
-  return res.data.items;
+  return sort != "dateAsc" ? res.data.items : res.data.items.reverse();
 };
 
-async function test() {
-  const data = await fetchVideo("react", 20, sortBy[2]);
-  console.log(data);
-}
+const fetchDetails = async (id: string) => {
+  const res = await axios.get("https://www.googleapis.com/youtube/v3/videos", {
+    params: {
+      part: "snippet,contentDetails,statistics",
+      id: id,
+      key: KEY,
+    },
+  });
 
-test();
+  return res.data.items[0];
+};
+
+// NA PRZYSZŁOŚĆ PAMIĘTAJ O ZMIANIE ENDPOINTU:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// async function test() {
+//   //const data = await fetchVideo("react", 20, sortBy[2]);
+//   //const data2 = await fetchDetails("0yORLdaSEXg");
+//   //console.log(data2);
+// }
+
+// test();
+
+export { sortBy, fetchVideo, fetchDetails };
