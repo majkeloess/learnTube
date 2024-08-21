@@ -2,8 +2,7 @@ import axios from "axios";
 import { searchResultSchema, videoResultSchema } from "./validation";
 import { sortType } from "./types";
 
-//const KEY = process.env.EXPO_PUBLIC_YOUTUBE;
-const KEY = "AIzaSyDqxYtzmd8CXp5V-PPdLISFxzro-nJYih0";
+const KEY = process.env.EXPO_PUBLIC_YOUTUBE;
 
 const sortBy: sortType[] = ["dateDes", "dateAsc", "viewCount"];
 

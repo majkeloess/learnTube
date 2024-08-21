@@ -12,13 +12,12 @@ const Sort = ({
 }) => {
   const [list, setList] = useState<sortType>(sort);
   const [isModalVisible, setModalVisible] = useState(false);
-  const text = ["Upload date: latest", "Upload date: oldest", "Most popular"];
+  const text = ["Upload date: oldest", "Upload date: latest", "Most popular"];
 
   const toggleModal = () => {
     setSort(list);
     setModalVisible(!isModalVisible);
   };
-  //  TODO LIST WITH STATE+CONTEXT, BACKGROUND
   return (
     <View className="mt-2 ">
       <TouchableOpacity onPress={toggleModal}>

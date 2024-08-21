@@ -23,7 +23,7 @@ const SearchScreen = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchVideo(query + " tutorial", 2);
+      const res = await fetchVideo(query + " tutorial", 10);
       if (res) {
         setData(res);
       }

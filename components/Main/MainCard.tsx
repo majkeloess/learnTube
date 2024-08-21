@@ -13,7 +13,7 @@ const MainCard = ({ query }: { query: string }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchVideo(query + " tutorial", 2, sortBy[2]);
+      const res = await fetchVideo(query + " tutorial", 5);
       if (res) {
         setData(res);
       }
