@@ -3,7 +3,7 @@ import Example from "../assets/example.png";
 export const placeHolderDetails = {
   kind: "",
   etag: "",
-  id: "",
+  id: "1",
   snippet: {
     publishedAt: "",
     channelId: "",
@@ -11,7 +11,7 @@ export const placeHolderDetails = {
     description: "",
     thumbnails: {
       medium: {
-        url: "",
+        url: Example,
         width: 0,
         height: 0,
       },

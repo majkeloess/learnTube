@@ -4,6 +4,7 @@ import MainVideo from "./MainVideo";
 import { fetchVideo, sortBy } from "@/utils/fetch";
 import { VideoSearchType } from "@/utils/types";
 import { placeHolderDetails } from "@/constants/placeholder";
+import { Link } from "expo-router";
 
 const MainCard = ({ query }: { query: string }) => {
   const [data, setData] = useState<VideoSearchType[]>(
@@ -27,9 +28,11 @@ const MainCard = ({ query }: { query: string }) => {
         <Text className="text-secondary text-[24px] font-psemibold600">
           {query}
         </Text>
-        <Text className="font-pregular400 text-secondary underline">
-          Show more
-        </Text>
+        <Link href={`/(tabs)/search/${query}`}>
+          <Text className="font-pregular400 text-secondary underline">
+            Show more
+          </Text>
+        </Link>
       </View>
       <ScrollView
         horizontal={true}
