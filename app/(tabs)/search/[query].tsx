@@ -29,7 +29,7 @@ const SearchScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView className="mt-11 mx-6" showsVerticalScrollIndicator={false}>
-        <SearchForm width="345" />
+        <SearchForm width="w-full" />
         {query ? (
           <View>
             <View className="mt-4">

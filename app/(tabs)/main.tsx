@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, SafeAreaView } from "react-native";
+import { View, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
 import SearchForm from "@/components/SearchForm";
 import SettingsNavigation from "@/components/Main/SettingsNavigation";
@@ -8,8 +8,8 @@ const MainScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View className="flex flex-row justify-evenly items-center mt-11 mx-4">
-          <SearchForm width="300" />
+        <View className="flex flex-row justify-evenly items-center w-full mt-11 space-x-4">
+          <SearchForm width="w-[290px]" />
           <SettingsNavigation />
         </View>
         <View className="mt-4">

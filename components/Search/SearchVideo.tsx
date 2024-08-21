@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { VideoSearchType } from "@/utils/types";
 import { useRouter } from "expo-router";
+
 const SearchVideo = ({ data }: { data: VideoSearchType }) => {
   const router = useRouter();
   const handlePress = () => {
