@@ -1,31 +1,21 @@
-import { View, Text, Image, ImageSourcePropType } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
+import { VideoSearchType } from "@/utils/types";
 
-
-const MainVideo = ({
-  id,
-  title,
-  publishedAt,
-  imageUrl,
-}: {
-  id: string;
-  title: string;
-  publishedAt: string;
-  imageUrl: ImageSourcePropType;
-}) => {
+const MainVideo = ({ data }: { data: VideoSearchType }) => {
   return (
-    <Link href={`/details/${id}`}>
+    <Link href={`/details/${data.id.videoId}`}>
       <View className="w-[180px] mr-4">
         <Image
-          source={{ uri: imageUrl }}
+          source={{ uri: data.snippet.thumbnails.medium.url }}
           className="w-[180px] h-[112px] rounded-2xl"
         />
         <Text className="text-[12px] font-pregular400 leading-[14px] my-2">
-          {title}
+          {data.snippet.title}
         </Text>
         <Text className="text-[10px] font-pregular400 text-right">
-          {publishedAt.split("T")[0]}
+          {data.snippet.publishedAt.split("T")[0]}
         </Text>
       </View>
     </Link>

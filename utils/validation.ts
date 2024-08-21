@@ -53,6 +53,7 @@ const videoDetailsSchema = z.object({
 });
 
 const videoResultSchema = z.array(videoDetailsSchema);
+
 export {
   videoDetailsSchema,
   videoSearchSchema,

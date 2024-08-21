@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { NativeWindStyleSheet } from "nativewind";
 import { Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";

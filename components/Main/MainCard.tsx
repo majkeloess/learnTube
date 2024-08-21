@@ -2,13 +2,14 @@ import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import MainVideo from "./MainVideo";
 import { fetchVideo, sortBy } from "@/utils/fetch";
+import { VideoSearchType } from "@/utils/types";
 
 const MainCard = ({ query }: { query: string }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<VideoSearchType[]>([]);
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchVideo(query + " tutorial", 5);
+      const res = await fetchVideo(query + " tutorial", 2, sortBy[2]);
       setData(res);
     };
 
@@ -31,13 +32,7 @@ const MainCard = ({ query }: { query: string }) => {
         className=" ml-6 mb-4 mt-2"
       >
         {data.map((data) => (
-          <MainVideo
-            key={data.id.videoId}
-            id={data.id.videoId}
-            publishedAt={data.snippret.publishedAt}
-            imageUrl={data.snippet.thumbnails.medium.url}
-            title={data.snippet.title}
-          />
+          <MainVideo data={data} />
         ))}
       </ScrollView>
       <View className="h-0.5 bg-secondary"></View>
