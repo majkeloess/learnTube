@@ -5,8 +5,11 @@ const NotesButton = ({
   setBoxData,
   text,
   boxData,
+  setText,
 }: {
   setBoxData: React.Dispatch<React.SetStateAction<string[]>>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+
   text: string;
   boxData: string[];
 }) => {
@@ -14,6 +17,7 @@ const NotesButton = ({
     const copy = [...boxData];
     copy.push(text);
     setBoxData(copy);
+    setText("");
   };
 
   return (

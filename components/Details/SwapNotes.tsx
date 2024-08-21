@@ -18,7 +18,12 @@ const SwapNotes = () => {
 
       <View className="flex justify-center items-center mt-6">
         <NotesForm text={text} setText={setText} />
-        <NotesButton setBoxData={setBoxData} text={text} boxData={boxData} />
+        <NotesButton
+          setText={setText}
+          setBoxData={setBoxData}
+          text={text}
+          boxData={boxData}
+        />
       </View>
     </View>
   );
