@@ -2,7 +2,8 @@ import axios from "axios";
 import { searchResultSchema, videoResultSchema } from "./validation";
 import { sortType } from "./types";
 
-const KEY = process.env.EXPO_PUBLIC_YOUTUBE;
+//const KEY = process.env.EXPO_PUBLIC_YOUTUBE;
+const KEY = "AIzaSyDqxYtzmd8CXp5V-PPdLISFxzro-nJYih0";
 
 const sortBy: sortType[] = ["dateDes", "dateAsc", "viewCount"];
 
@@ -18,6 +19,7 @@ const fetchVideo = async (query: string, n: number) => {
   });
 
   const validatedData = searchResultSchema.safeParse(res.data);
+  //console.log(validatedData.error);
 
   if (validatedData.success) {
     return validatedData.data.items;
@@ -35,18 +37,17 @@ const fetchDetails = async (id: string) => {
     },
   });
 
-  console.log(res.data.items);
   const validatedData = videoResultSchema.safeParse(res.data.items);
-  console.log(validatedData.error);
+  //console.log(validatedData.error);
   return validatedData.success ? validatedData.data[0] : null;
 };
 
 // async function test() {
-//   //const data = await fetchVideo("react", 2, sortBy[2]);
+//   const data = await fetchVideo("React Native", 5);
 //   const data = await fetchDetails("0yORLdaSEXg");
 //   console.log(data);
 // }
-
-// test();
+//
+//test();
 
 export { sortBy, fetchVideo, fetchDetails };

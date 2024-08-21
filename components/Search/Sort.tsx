@@ -48,7 +48,7 @@ const Sort = ({
                   Sort records by:
                 </Text>
               </View>
-              <View>
+              <View className="mt-6">
                 <ListItem
                   text={text[0]}
                   list={list}
@@ -69,7 +69,7 @@ const Sort = ({
                 />
               </View>
               <Pressable
-                className="w-[256px] h-[40px] bg-secondary rounded-lg flex justify-center items-center"
+                className="w-[256px] h-[40px] bg-secondary rounded-lg flex justify-center items-center mt-28"
                 onPress={toggleModal}
               >
                 <Text className="text-white text-[14px] font-psemibold600">

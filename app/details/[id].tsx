@@ -27,9 +27,10 @@ const DetailsScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="h-screen">
       {/* temporary */}
       <VideoPlayerAV url={data.id} />
+      {/* <VideoPlayer url={data.id} /> */}
       <View className="mx-4 mt-4">
         <Text className="text-[18px] font-psemibold600">
           {data.snippet.title}
@@ -49,7 +50,6 @@ const DetailsScreen = () => {
         </View>
 
         <View className="mt-8">
-          {/* tu będzie pasowane dalej data  */}
           <SwapContainer
             description={data.snippet.description}
             likes={data.statistics.likeCount}
