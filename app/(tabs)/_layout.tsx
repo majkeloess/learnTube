@@ -1,6 +1,5 @@
-import { View, Text } from "react-native";
 import React from "react";
-import { Tabs, Redirect } from "expo-router";
+import { Tabs } from "expo-router";
 
 import { colors } from "@/constants/color";
 import Tab from "@/components/Tab/Tab";

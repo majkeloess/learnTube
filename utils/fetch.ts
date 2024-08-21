@@ -1,11 +1,12 @@
 import axios from "axios";
 import { searchResultSchema, videoResultSchema } from "./validation";
+import { sortType } from "./types";
 
-const KEY = "AIzaSyCgNgEgB2dnu_JgQFtHp2pmDqrErn_dd9E";
+const KEY = process.env.EXPO_PUBLIC_YOUTUBE;
 
-const sortBy = ["dateDes", "dateAsc", "viewCount"];
+const sortBy: sortType[] = ["dateDes", "dateAsc", "viewCount"];
 
-const fetchVideo = async (query: string, n: number, sort: string) => {
+const fetchVideo = async (query: string, n: number) => {
   const res = await axios.get("https://www.googleapis.com/youtube/v3/search", {
     params: {
       part: "snippet",
@@ -13,16 +14,13 @@ const fetchVideo = async (query: string, n: number, sort: string) => {
       type: "video",
       key: KEY,
       maxResults: n,
-      order: sort == "viewCount" ? sort : "date",
     },
   });
 
   const validatedData = searchResultSchema.safeParse(res.data);
 
   if (validatedData.success) {
-    return sort != "dateAsc"
-      ? validatedData.data.items
-      : validatedData.data.items.reverse();
+    return validatedData.data.items;
   } else {
     return null;
   }
@@ -43,12 +41,12 @@ const fetchDetails = async (id: string) => {
   return validatedData.success ? validatedData.data[0] : null;
 };
 
-async function test() {
-  //const data = await fetchVideo("react", 2, sortBy[2]);
-  const data = await fetchDetails("0yORLdaSEXg");
-  console.log(data);
-}
+// async function test() {
+//   //const data = await fetchVideo("react", 2, sortBy[2]);
+//   const data = await fetchDetails("0yORLdaSEXg");
+//   console.log(data);
+// }
 
-test();
+// test();
 
 export { sortBy, fetchVideo, fetchDetails };

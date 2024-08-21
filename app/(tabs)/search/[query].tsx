@@ -6,18 +6,24 @@ import Sort from "@/components/Search/Sort";
 import SearchVideo from "@/components/Search/SearchVideo";
 import { useLocalSearchParams } from "expo-router";
 import { fetchVideo, sortBy } from "@/utils/fetch";
-import { VideoSearchType } from "@/utils/types";
+import { sortType, VideoSearchType } from "@/utils/types";
 import { placeHolderDetails } from "@/constants/placeholder";
+import {
+  popularityCompare,
+  oldestCompare,
+  latestCompare,
+} from "@/utils/sortData";
 
 const SearchScreen = () => {
   const { query }: { query: string } = useLocalSearchParams();
+  const [sort, setSort] = useState<sortType>(sortBy[0]);
   const [data, setData] = useState<VideoSearchType[]>(
     new Array(2).fill(placeHolderDetails)
   );
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchVideo(query + " tutorial", 2, sortBy[2]);
+      const res = await fetchVideo(query + " tutorial", 2);
       if (res) {
         setData(res);
       }
@@ -25,6 +31,19 @@ const SearchScreen = () => {
 
     getData();
   }, [query]);
+
+  useEffect(() => {
+    const dataToSort = [...data];
+
+    if (sort == sortBy[0]) {
+      dataToSort.sort(latestCompare);
+    } else if (sort == sortBy[1]) {
+      dataToSort.sort(oldestCompare);
+    } else {
+      dataToSort.sort(popularityCompare);
+    }
+    setData(dataToSort);
+  }, [sort]);
 
   return (
     <SafeAreaView>
@@ -37,7 +56,7 @@ const SearchScreen = () => {
                 {data.length} result found for:
                 <Text className="font-psemibold600">"{query}"</Text>
               </Text>
-              <Sort />
+              <Sort sort={sort} setSort={setSort} />
             </View>
             <View className="mt-4">
               {data.map((data, i) => (

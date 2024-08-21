@@ -47,3 +47,5 @@ export type VideoDetailsType = {
     likeCount: string;
   };
 };
+
+export type sortType = "dateDes" | "dateAsc" | "viewCount";

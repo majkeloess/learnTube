@@ -8,8 +8,10 @@ const SearchForm = ({ width }: { width: string }) => {
   const [search, setSearch] = useState("");
 
   const handleRedirect = () => {
-    router.replace(`/(tabs)/search/${search}`);
-    setSearch("");
+    if (search != "") {
+      router.replace(`/(tabs)/search/${search}`);
+      setSearch("");
+    }
   };
 
   return (
