@@ -1,7 +1,8 @@
 import { View, Text, Image, ImageSourcePropType } from "react-native";
 import React from "react";
-import Example from "../../assets/example.png";
 import { Link } from "expo-router";
+
+
 const MainVideo = ({
   id,
   title,

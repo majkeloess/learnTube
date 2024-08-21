@@ -1,26 +1,8 @@
 import axios from "axios";
+import { searchResultSchema, videoResultSchema } from "./validation";
 
 const KEY = "AIzaSyCgNgEgB2dnu_JgQFtHp2pmDqrErn_dd9E";
 
-//dobra rano trzeba napisać walidacje pewnie z zodem, obsługe search, skończyć dynamic routing, (czemu fetch nie działa???????????)
-
-// {
-//   "error": {
-//     "code": 403,
-//     "message": "The request cannot be completed because you have exceeded your \u003ca href=\"/youtube/v3/getting-started#quota\"\u003equota\u003c/a\u003e.",
-//     "errors": [
-//       {
-//         "message": "The request cannot be completed because you have exceeded your \u003ca href=\"/youtube/v3/getting-started#quota\"\u003equota\u003c/a\u003e.",
-//         "domain": "youtube.quota",
-//         "reason": "quotaExceeded"
-//       }
-//     ]
-//   }
-// }
-
-// XDDDDDDDDDDDDDDDDDDdd
-
-//to się przyda do modala
 const sortBy = ["dateDes", "dateAsc", "viewCount"];
 
 const fetchVideo = async (query: string, n: number, sort: string) => {
@@ -35,7 +17,15 @@ const fetchVideo = async (query: string, n: number, sort: string) => {
     },
   });
 
-  return sort != "dateAsc" ? res.data.items : res.data.items.reverse();
+  const validatedData = searchResultSchema.safeParse(res.data);
+
+  if (validatedData.success) {
+    return sort != "dateAsc"
+      ? validatedData.data.items
+      : validatedData.data.items.reverse();
+  } else {
+    return [];
+  }
 };
 
 const fetchDetails = async (id: string) => {
@@ -47,15 +37,16 @@ const fetchDetails = async (id: string) => {
     },
   });
 
-  return res.data.items[0];
+  //console.log(res.data.items);
+
+  const validatedData = videoResultSchema.safeParse(res.data.items);
+  return validatedData.success ? validatedData.data : [];
 };
 
-// NA PRZYSZŁOŚĆ PAMIĘTAJ O ZMIANIE ENDPOINTU:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 // async function test() {
-//   //const data = await fetchVideo("react", 20, sortBy[2]);
-//   const data2 = await fetchDetails("0yORLdaSEXg");
-//   console.log(data2);
+//   //const data = await fetchVideo("react", 2, sortBy[2]);
+//   const data = await fetchDetails("0yORLdaSEXg");
+//   console.log(data);
 // }
 
 // test();
