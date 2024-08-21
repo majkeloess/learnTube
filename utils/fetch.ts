@@ -24,7 +24,7 @@ const fetchVideo = async (query: string, n: number, sort: string) => {
       ? validatedData.data.items
       : validatedData.data.items.reverse();
   } else {
-    return [];
+    return null;
   }
 };
 
@@ -37,18 +37,18 @@ const fetchDetails = async (id: string) => {
     },
   });
 
-  //console.log(res.data.items);
-
+  console.log(res.data.items);
   const validatedData = videoResultSchema.safeParse(res.data.items);
-  return validatedData.success ? validatedData.data : [];
+  console.log(validatedData.error);
+  return validatedData.success ? validatedData.data[0] : null;
 };
 
-// async function test() {
-//   //const data = await fetchVideo("react", 2, sortBy[2]);
-//   const data = await fetchDetails("0yORLdaSEXg");
-//   console.log(data);
-// }
+async function test() {
+  //const data = await fetchVideo("react", 2, sortBy[2]);
+  const data = await fetchDetails("0yORLdaSEXg");
+  console.log(data);
+}
 
-// test();
+test();
 
 export { sortBy, fetchVideo, fetchDetails };

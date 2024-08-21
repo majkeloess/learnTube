@@ -50,6 +50,10 @@ const videoDetailsSchema = z.object({
     channelTitle: z.string(),
     liveBroadcastContent: z.string(),
   }),
+  statistics: z.object({
+    viewCount: z.string(),
+    likeCount: z.string(),
+  }),
 });
 
 const videoResultSchema = z.array(videoDetailsSchema);

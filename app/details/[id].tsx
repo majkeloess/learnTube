@@ -1,33 +1,35 @@
 import { View, Text, SafeAreaView, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import VideoPlayerAV from "@/components/Details/VideoPlayerAV";
+import VideoPlayerAV from "@/components/Details/VideoPlayerYT";
 import Avatar from "@/components/Avatar";
 import SwapContainer from "@/components/Details/SwapContainer";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { fetchDetails } from "@/utils/fetch";
+import { VideoDetailsType } from "@/utils/types";
+import { placeHolderDetails } from "@/constants/placeholder";
 
 const DetailsScreen = () => {
   const router = useRouter();
-  const [data, setData] = useState({});
-  const {
-    id: [firstId],
-  } = useLocalSearchParams();
+
+  const [data, setData] = useState<VideoDetailsType>(placeHolderDetails);
+
+  const { id }: { id: string } = useLocalSearchParams();
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchDetails(firstId);
-      setData(res);
+      const res = await fetchDetails(id);
+      if (res) {
+        setData(res);
+      }
     };
 
-    if (firstId) {
-      getData();
-    }
+    getData();
   }, []);
 
   return (
     <SafeAreaView>
       {/* temporary */}
-      <VideoPlayerAV />
+      <VideoPlayerAV url={data.id} />
       <View className="mx-4 mt-4">
         <Text className="text-[18px] font-psemibold600">
           {data.snippet.title}
@@ -48,7 +50,11 @@ const DetailsScreen = () => {
 
         <View className="mt-8">
           {/* tu będzie pasowane dalej data  */}
-          <SwapContainer />
+          <SwapContainer
+            description={data.snippet.description}
+            likes={data.statistics.likeCount}
+            views={data.statistics.viewCount}
+          />
         </View>
       </View>
     </SafeAreaView>

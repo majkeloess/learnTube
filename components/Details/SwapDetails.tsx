@@ -1,28 +1,31 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import SwapStatsBox from "./SwapStatsBox";
 
 import { LikesIcon, ViewsIcon } from "@/constants/png";
 
-const SwapDetails = () => {
+const SwapDetails = ({
+  description,
+  views,
+  likes,
+}: {
+  description: string;
+  views: string;
+  likes: string;
+}) => {
   return (
     <View>
-      <View>
+      <ScrollView showsVerticalScrollIndicator={false} className="h-[250px]">
         <Text className="font-psemibold600 text-[10px]">Description</Text>
         <Text className="mt-2 font-pregular400 text-[12px] leading-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          venenatis semper purus a accumsan. Donec accumsan pulvinar metus,
-          euismod lacinia libero congue non. Vivamus ut massa finibus, consequat
-          dui commodo, semper magna. Donec nec justo consectetur lacus facilisis
-          tristique eget quis nulla. Cras sodales lacinia nisi, in dictum elit
-          commodo in.
+          {description}
         </Text>
-      </View>
+      </ScrollView>
       <View>
         <Text className="font-psemibold600 text-[10px] mt-2">Statistics</Text>
         <View className="flex flex-row items-center justify-between mt-2">
-          <SwapStatsBox image={ViewsIcon} text={"25222222 views"} />
-          <SwapStatsBox image={LikesIcon} text={"12345 likes"} />
+          <SwapStatsBox image={ViewsIcon} text={views + " views"} />
+          <SwapStatsBox image={LikesIcon} text={likes + " likes"} />
         </View>
       </View>
     </View>

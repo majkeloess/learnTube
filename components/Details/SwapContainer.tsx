@@ -5,7 +5,15 @@ import SwapDetails from "./SwapDetails";
 import SwapNotes from "./SwapNotes";
 import SwapPress from "./SwapPress";
 
-const SwapContainer = () => {
+const SwapContainer = ({
+  description,
+  views,
+  likes,
+}: {
+  description: string;
+  views: string;
+  likes: string;
+}) => {
   const [active, setActive] = useState(true);
   const handleActive = () => {
     setActive(!active);
@@ -26,7 +34,13 @@ const SwapContainer = () => {
           active={active}
         />
       </View>
-      <View className="mt-4">{active ? <SwapDetails /> : <SwapNotes />}</View>
+      <View className="mt-4">
+        {active ? (
+          <SwapDetails description={description} likes={likes} views={views} />
+        ) : (
+          <SwapNotes />
+        )}
+      </View>
     </View>
   );
 };

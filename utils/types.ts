@@ -42,4 +42,8 @@ export type VideoDetailsType = {
     channelTitle: string;
     liveBroadcastContent: string;
   };
+  statistics: {
+    viewCount: string;
+    likeCount: string;
+  };
 };
