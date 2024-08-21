@@ -1,8 +1,9 @@
+import * as Notifications from "expo-notifications";
 import { View, Text, Pressable } from "react-native";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ClockSvg } from "@/constants/svg";
 
 const DatePicker = () => {
@@ -14,6 +15,7 @@ const DatePicker = () => {
     setShow(false);
     setDate(currentDate);
   };
+
   return (
     <Pressable
       className="flex flex-row space-x-2 items-center"

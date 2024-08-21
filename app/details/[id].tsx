@@ -7,6 +7,7 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import { fetchDetails } from "@/utils/fetch";
 import { VideoDetailsType } from "@/utils/types";
 import { placeHolderDetails } from "@/constants/placeholder";
+import { LeftArrowSvg } from "@/constants/svg";
 
 const DetailsScreen = () => {
   const router = useRouter();
@@ -35,18 +36,20 @@ const DetailsScreen = () => {
         <Text className="text-[18px] font-psemibold600">
           {data.snippet.title}
         </Text>
-
-        <View className="flex flex-row justify-start items-center space-x-2 mt-6">
+        <View className="flex flex-row justify-between items-center mt-6">
+          <View className="flex flex-row justify-start items-center space-x-4">
+            <Avatar />
+            <Text className="text-[14px] font-pbold700">
+              {data.snippet.channelTitle}
+            </Text>
+          </View>
           <Pressable
             onPress={() => {
               router.back();
             }}
           >
-            <Avatar />
+            <LeftArrowSvg />
           </Pressable>
-          <Text className="text-[14px] font-pbold700">
-            {data.snippet.channelTitle}
-          </Text>
         </View>
 
         <View className="mt-8">

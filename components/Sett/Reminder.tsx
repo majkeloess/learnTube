@@ -1,20 +1,60 @@
+import * as Notifications from "expo-notifications";
 import { View, Text, Switch, Pressable } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ClockSvg, NotificationsSvg } from "@/constants/svg";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { colors } from "@/constants/color";
 const Reminder = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const [isEnabled, setIsEnabled] = useState(true);
   const [show, setShow] = useState(false);
+  const [date, setDate] = useState(() => {
+    const newDate = new Date();
+    newDate.setHours(12, 0, 0, 0);
+    return newDate;
+  });
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || date;
     setShow(false);
     setDate(currentDate);
+    console.log(date);
   };
+
+  const requestPermissions = async () => {
+    const { status } = await Notifications.requestPermissionsAsync();
+    console.log(status);
+  };
+
+  const scheduleNotification = async () => {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+    const notificationId = await Notifications.scheduleNotificationAsync({
+      content: {
+        title: ":))))))",
+        body: "Are ya winning son??",
+      },
+      trigger: {
+        hour: 23, //date.getHours(),
+        minute: 28, //date.getMinutes(),
+        repeats: true,
+      },
+    });
+
+    console.log(notificationId);
+  };
+
+  useEffect(() => {
+    requestPermissions();
+  }, []);
+
+  useEffect(() => {
+    if (isEnabled) {
+      scheduleNotification();
+    } else {
+      Notifications.cancelAllScheduledNotificationsAsync();
+    }
+  }, [isEnabled, date]);
 
   return (
     <View className="mx-6">
@@ -34,7 +74,10 @@ const Reminder = () => {
         >
           <ClockSvg />
           <Text className="text-secondary font-pregular400 text-[12px]">
-            {date.getHours()}:{date.getMinutes()}
+            {date.getHours()}:
+            {date.getMinutes() < 10
+              ? "0" + date.getMinutes()
+              : date.getMinutes()}
           </Text>
         </Pressable>
         <Switch
