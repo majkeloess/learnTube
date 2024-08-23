@@ -10,15 +10,17 @@ const SearchForm = ({
   setData,
 }: {
   width: string;
-  data: VideoSearchType[] | null;
-  setData: React.Dispatch<React.SetStateAction<VideoSearchType[] | null>>;
+  data?: VideoSearchType[] | null;
+  setData?: React.Dispatch<React.SetStateAction<VideoSearchType[] | null>>;
 }) => {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
   const handleRedirect = () => {
     if (search != "") {
-      setData(null);
+      if (setData) {
+        setData(null);
+      }
       router.replace(`/(tabs)/search/${search}`);
       setSearch("");
     }
