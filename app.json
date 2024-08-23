@@ -17,14 +17,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/app-icon.png",
         "backgroundColor": "#8D99AE"
-      }
+      },
+      "permissions": [],
+      "package": "com.majkeloess.learnTube"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": ["expo-router", "react-native-video"],
+    "plugins": [
+      "expo-router",
+      "react-native-video"
+    ],
     "experiments": {
       "typedRoutes": true
     }

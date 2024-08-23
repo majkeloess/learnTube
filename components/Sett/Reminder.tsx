@@ -6,6 +6,7 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { colors } from "@/constants/color";
+
 const Reminder = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   const [show, setShow] = useState(false);
@@ -17,14 +18,12 @@ const Reminder = () => {
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || date;
-    //setShow(false);
+    //console.log(date.getHours(), date.getMinutes());
     setDate(currentDate);
-    console.log(date);
   };
 
   const requestPermissions = async () => {
     const { status } = await Notifications.requestPermissionsAsync();
-    console.log(status);
   };
 
   const scheduleNotification = async () => {
@@ -35,13 +34,11 @@ const Reminder = () => {
         body: "Are ya winning son??",
       },
       trigger: {
-        hour: 23, //date.getHours(),
-        minute: 28, //date.getMinutes(),
+        hour: date.getHours(),
+        minute: date.getMinutes(),
         repeats: true,
       },
     });
-
-    console.log(notificationId);
   };
 
   useEffect(() => {
@@ -92,31 +89,29 @@ const Reminder = () => {
           You will receive friendly reminder to remember to study
         </Text>
       </View>
-      <View>
-        {show && (
-          <>
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode="time"
-              is24Hour={true}
-              display="spinner"
-              textColor="black"
-              onChange={onChange}
-            />
-            <Pressable
-              className="w-[256px] h-[40px] bg-secondary rounded-lg flex justify-center items-center mt-28"
-              onPress={() => {
-                setShow(!show);
-              }}
-            >
-              <Text className="text-white text-[14px] font-psemibold600">
-                Confirm
-              </Text>
-            </Pressable>
-          </>
-        )}
-      </View>
+      {show && isEnabled && (
+        <View className="w-full flex justify-center items-center">
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode="time"
+            is24Hour={true}
+            display="spinner"
+            textColor="black"
+            onChange={onChange}
+          />
+          <Pressable
+            className="w-[256px] h-[40px] bg-secondary rounded-lg flex justify-center items-center "
+            onPress={() => {
+              setShow(!show);
+            }}
+          >
+            <Text className="text-white text-[14px] font-psemibold600">
+              Confirm
+            </Text>
+          </Pressable>
+        </View>
+      )}
     </View>
   );
 };
