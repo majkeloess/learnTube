@@ -8,11 +8,7 @@ import { useLocalSearchParams } from "expo-router";
 import { fetchVideo, sortBy } from "@/utils/fetch";
 import { sortType, VideoSearchType } from "@/utils/types";
 import { placeHolderDetails } from "@/constants/placeholder";
-import {
-  popularityCompare,
-  oldestCompare,
-  latestCompare,
-} from "@/utils/sortData";
+import { oldestCompare, latestCompare, getPopularity } from "@/utils/sortData";
 
 const SearchScreen = () => {
   const { query }: { query: string } = useLocalSearchParams();
@@ -33,16 +29,29 @@ const SearchScreen = () => {
   }, [query]);
 
   useEffect(() => {
-    const dataToSort = [...data];
+    const sortAsync = async () => {
+      const dataToSort = [...data];
 
-    if (sort == sortBy[0]) {
-      dataToSort.sort(latestCompare);
-    } else if (sort == sortBy[1]) {
-      dataToSort.sort(oldestCompare);
-    } else {
-      dataToSort.sort(popularityCompare);
-    }
-    setData(dataToSort);
+      if (sort == sortBy[0]) {
+        dataToSort.sort(latestCompare);
+      } else if (sort == sortBy[1]) {
+        dataToSort.sort(oldestCompare);
+      } else {
+        const popularityPromises = dataToSort.map((video) =>
+          getPopularity(video.id.videoId)
+        );
+        const popularities = await Promise.all(popularityPromises);
+
+        dataToSort.sort(
+          (a, b) =>
+            popularities[dataToSort.indexOf(b)] -
+            popularities[dataToSort.indexOf(a)]
+        );
+      }
+      setData(dataToSort);
+    };
+
+    sortAsync();
   }, [sort]);
 
   return (
