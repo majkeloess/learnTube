@@ -3,12 +3,22 @@ import { SearchSvg } from "@/constants/svg";
 import { colors } from "@/constants/color";
 import { useState } from "react";
 import { useRouter } from "expo-router";
-const SearchForm = ({ width }: { width: string }) => {
+import { VideoSearchType } from "@/utils/types";
+const SearchForm = ({
+  width,
+  data,
+  setData,
+}: {
+  width: string;
+  data: VideoSearchType[] | null;
+  setData: React.Dispatch<React.SetStateAction<VideoSearchType[] | null>>;
+}) => {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
   const handleRedirect = () => {
     if (search != "") {
+      setData(null);
       router.replace(`/(tabs)/search/${search}`);
       setSearch("");
     }

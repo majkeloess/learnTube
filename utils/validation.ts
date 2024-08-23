@@ -29,8 +29,6 @@ const searchResultSchema = z.object({
   items: z.array(videoSearchSchema),
 });
 
-// to i tak zwraca tablicę nawet jak jes jeden
-
 const videoDetailsSchema = z.object({
   kind: z.string(),
   etag: z.string(),

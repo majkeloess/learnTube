@@ -1,4 +1,10 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 
 import SearchForm from "@/components/SearchForm";
@@ -7,14 +13,15 @@ import SearchVideo from "@/components/Search/SearchVideo";
 import { useLocalSearchParams } from "expo-router";
 import { fetchVideo, sortBy } from "@/utils/fetch";
 import { sortType, VideoSearchType } from "@/utils/types";
-import { placeHolderDetails } from "@/constants/placeholder";
 import { oldestCompare, latestCompare, getPopularity } from "@/utils/sortData";
+import { colors } from "@/constants/color";
 
 const SearchScreen = () => {
   const { query }: { query: string } = useLocalSearchParams();
   const [sort, setSort] = useState<sortType>(sortBy[0]);
-  const [data, setData] = useState<VideoSearchType[]>(
-    new Array(2).fill(placeHolderDetails)
+  const [data, setData] = useState<VideoSearchType[] | null>(
+    //new Array(2).fill(placeHolderDetails)
+    null
   );
 
   useEffect(() => {
@@ -30,6 +37,10 @@ const SearchScreen = () => {
 
   useEffect(() => {
     const sortAsync = async () => {
+      if (!data) {
+        return;
+      }
+
       const dataToSort = [...data];
 
       if (sort == sortBy[0]) {
@@ -57,21 +68,29 @@ const SearchScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView className="mt-11 mx-6" showsVerticalScrollIndicator={false}>
-        <SearchForm width="w-full" />
+        <SearchForm width="w-full" data={data} setData={setData} />
         {query ? (
           <View>
-            <View className="mt-4">
-              <Text className="font-pregular400 text-[10px]">
-                {data.length} result found for:
-                <Text className="font-psemibold600">"{query}"</Text>
-              </Text>
-              <Sort sort={sort} setSort={setSort} />
-            </View>
-            <View className="mt-4">
-              {data.map((data, i) => (
-                <SearchVideo data={data} key={i} />
-              ))}
-            </View>
+            {data ? (
+              <View>
+                <View className="mt-4">
+                  <Text className="font-pregular400 text-[10px]">
+                    {data.length} result found for:
+                    <Text className="font-psemibold600">"{query}"</Text>
+                  </Text>
+                  <Sort sort={sort} setSort={setSort} />
+                </View>
+                <View className="mt-4">
+                  {data.map((data, i) => (
+                    <SearchVideo data={data} key={i} />
+                  ))}
+                </View>
+              </View>
+            ) : (
+              <View className="h-[200px] flex justify-center items-center">
+                <ActivityIndicator size="large" color={colors.secondary} />
+              </View>
+            )}
           </View>
         ) : (
           <View className="flex items-center justify-center align-middle mt-10">

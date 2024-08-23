@@ -1,15 +1,15 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import MainVideo from "./MainVideo";
 import { fetchVideo, sortBy } from "@/utils/fetch";
 import { VideoSearchType } from "@/utils/types";
 import { placeHolderDetails } from "@/constants/placeholder";
 import { Link } from "expo-router";
+import { colors } from "@/constants/color";
 
 const MainCard = ({ query }: { query: string }) => {
-  const [data, setData] = useState<VideoSearchType[]>(
-    new Array(2).fill(placeHolderDetails)
-  );
+  const [data, setData] = useState<VideoSearchType[] | null>(null);
+  //new Array(2).fill(placeHolderDetails)
 
   useEffect(() => {
     const getData = async () => {
@@ -34,15 +34,19 @@ const MainCard = ({ query }: { query: string }) => {
           </Text>
         </Link>
       </View>
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        className=" ml-6 mb-4 mt-2"
-      >
-        {data.map((data, i) => (
-          <MainVideo data={data} key={i} />
-        ))}
-      </ScrollView>
+      {data ? (
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          className=" ml-6 mb-4 mt-2"
+        >
+          {data && data.map((data, i) => <MainVideo data={data} key={i} />)}
+        </ScrollView>
+      ) : (
+        <View className="w-full flex justify-center items-center h-[180px]">
+          <ActivityIndicator size="small" color={colors.secondary} />
+        </View>
+      )}
       <View className="h-0.5 bg-secondary"></View>
     </View>
   );

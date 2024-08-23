@@ -24,5 +24,3 @@ export const getPopularity = async (id: string) => {
     return 0;
   }
 };
-
-//        //pop[0] = 123000 pop[1] = 10000, pop[2] =81000
