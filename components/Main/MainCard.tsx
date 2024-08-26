@@ -38,7 +38,7 @@ const MainCard = ({ query }: { query: string }) => {
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          className=" ml-6 mb-4 mt-2"
+          className="ml-6 mb-4 mt-2"
         >
           {data && data.map((data, i) => <MainVideo data={data} key={i} />)}
         </ScrollView>

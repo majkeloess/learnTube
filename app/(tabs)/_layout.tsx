@@ -16,6 +16,7 @@ const TabsLayout = () => {
         tabBarStyle: {
           backgroundColor: colors.main,
           height: 72,
+          paddingBottom: 24,
           alignItems: "center",
           justifyContent: "center",
         },

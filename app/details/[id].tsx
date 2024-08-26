@@ -1,6 +1,7 @@
 import { View, Text, SafeAreaView, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import VideoPlayerAV from "@/components/Details/VideoPlayerYT";
+import VideoPlayer from "@/components/Details/VideoPlayer";
 import Avatar from "@/components/Avatar";
 import SwapContainer from "@/components/Details/SwapContainer";
 import { useRouter, useLocalSearchParams } from "expo-router";
@@ -28,10 +29,10 @@ const DetailsScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView className="h-screen">
+    <SafeAreaView className="h-screen mt-6">
       {/* temporary */}
       <VideoPlayerAV url={data.id} />
-      {/* <VideoPlayer url={data.id} /> */}
+      {/* <VideoPlayer /> */}
       <View className="mx-4 mt-4">
         <Text className="text-[18px] font-psemibold600">
           {data.snippet.title}

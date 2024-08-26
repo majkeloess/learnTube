@@ -1,11 +1,15 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 import { VideoSearchType } from "@/utils/types";
-
+import { useRouter } from "expo-router";
 const MainVideo = ({ data }: { data: VideoSearchType }) => {
+  const router = useRouter();
+
   return (
-    <Link href={`/details/${data.id.videoId}`}>
+    <TouchableOpacity
+      onPress={() => router.push(`/details/${data.id.videoId}`)}
+    >
       <View className="w-[180px] mr-4">
         <View>
           <Image
@@ -20,7 +24,7 @@ const MainVideo = ({ data }: { data: VideoSearchType }) => {
           {data.snippet.publishedAt.split("T")[0]}
         </Text>
       </View>
-    </Link>
+    </TouchableOpacity>
   );
 };
 
