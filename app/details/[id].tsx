@@ -31,8 +31,8 @@ const DetailsScreen = () => {
   return (
     <SafeAreaView className="h-screen mt-6">
       {/* temporary */}
-      <VideoPlayerAV url={data.id} />
-      {/* <VideoPlayer /> */}
+      {/* <VideoPlayerAV url={data.id} /> */}
+      <VideoPlayer />
       <View className="mx-4 mt-4">
         <Text className="text-[18px] font-psemibold600">
           {data.snippet.title}
@@ -44,13 +44,6 @@ const DetailsScreen = () => {
               {data.snippet.channelTitle}
             </Text>
           </View>
-          <Pressable
-            onPress={() => {
-              router.back();
-            }}
-          >
-            <LeftArrowSvg />
-          </Pressable>
         </View>
 
         <View className="mt-8">
