@@ -6,7 +6,7 @@ import SettingsUser from "@/components/Sett/SettingsUser";
 
 const SettingsScreen = () => {
   return (
-    <SafeAreaView className="mt-6">
+    <SafeAreaView className="mt-12">
       <SettingsHeader />
       <SettingsUser />
       <View className="h-0.5 bg-secondary"></View>
