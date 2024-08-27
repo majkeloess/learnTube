@@ -9,10 +9,12 @@ const SwapContainer = ({
   description,
   views,
   likes,
+  currentTime,
 }: {
   description: string;
   views: string;
   likes: string;
+  currentTime: number;
 }) => {
   const [active, setActive] = useState(true);
   const handleActive = () => {
@@ -38,7 +40,7 @@ const SwapContainer = ({
         {active ? (
           <SwapDetails description={description} likes={likes} views={views} />
         ) : (
-          <SwapNotes />
+          <SwapNotes currentTime={currentTime} />
         )}
       </View>
     </View>

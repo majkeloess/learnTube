@@ -14,6 +14,7 @@ const DetailsScreen = () => {
   const router = useRouter();
 
   const [data, setData] = useState<VideoDetailsType>(placeHolderDetails);
+  const [currentTime, setCurrentTime] = useState(0);
 
   const { id }: { id: string } = useLocalSearchParams();
 
@@ -32,7 +33,7 @@ const DetailsScreen = () => {
     <SafeAreaView className="h-screen mt-6">
       {/* temporary */}
       {/* <VideoPlayerAV url={data.id} /> */}
-      <VideoPlayer />
+      <VideoPlayer currentTime={currentTime} setCurrentTime={setCurrentTime} />
       <View className="mx-4 mt-4">
         <Text className="text-[18px] font-psemibold600">
           {data.snippet.title}
@@ -48,6 +49,7 @@ const DetailsScreen = () => {
 
         <View className="mt-8">
           <SwapContainer
+            currentTime={currentTime}
             description={data.snippet.description}
             likes={data.statistics.likeCount}
             views={data.statistics.viewCount}

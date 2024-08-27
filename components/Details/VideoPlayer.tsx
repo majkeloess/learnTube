@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Video, { VideoRef, OnProgressData } from "react-native-video";
+import { formatTime } from "@/utils/utilityFunctions";
 import { View, Text, Pressable } from "react-native";
 import Control from "../Control";
 import {
@@ -13,13 +14,18 @@ import {
 } from "@/constants/png";
 import { useRouter } from "expo-router";
 
-const VideoPlayer = () => {
+const VideoPlayer = ({
+  currentTime,
+  setCurrentTime,
+}: {
+  currentTime: number;
+  setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const router = useRouter();
   const videoRef = useRef<VideoRef>(null);
   const [paused, setPaused] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
   const [muted, setMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -65,12 +71,6 @@ const VideoPlayer = () => {
 
   const handleFullscreen = () => {
     setFullscreen(!fullscreen);
-  };
-
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
 
   return (
@@ -120,7 +120,7 @@ const VideoPlayer = () => {
             style="absolute right-2 bottom-8"
           />
           <View className="absolute left-2 bottom-8">
-            <Text className="text-white">
+            <Text className="text-white font-psemibold600 text-[10px]">
               {formatTime(currentTime)} / {formatTime(duration)}
             </Text>
           </View>
