@@ -45,7 +45,8 @@
     "react-native-webview": "13.8.6",
     "react-native-youtube-iframe": "^2.3.0",
     "zod": "^3.23.8",
-    "expo-dev-client": "~4.0.25"
+    "expo-dev-client": "~4.0.25",
+    "@react-native-community/slider": "4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

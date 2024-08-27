@@ -13,7 +13,7 @@ import {
   VolumeIcon,
 } from "@/constants/png";
 import { useRouter } from "expo-router";
-
+import Slider from "@react-native-community/slider";
 const VideoPlayer = ({
   currentTime,
   setCurrentTime,
@@ -28,8 +28,6 @@ const VideoPlayer = ({
   const [muted, setMuted] = useState(false);
   const [duration, setDuration] = useState(0);
   const [visible, setVisible] = useState(true);
-
-  //TODO: Progess bar
 
   const handleVisible = () => {
     setVisible(!visible);
@@ -71,6 +69,13 @@ const VideoPlayer = ({
 
   const handleFullscreen = () => {
     setFullscreen(!fullscreen);
+  };
+
+  const handleSliderChange = (value: number) => {
+    if (videoRef.current) {
+      videoRef.current.seek(value);
+    }
+    setCurrentTime(value);
   };
 
   return (
@@ -119,6 +124,25 @@ const VideoPlayer = ({
             handlePress={handleFullscreen}
             style="absolute right-2 bottom-8"
           />
+
+          <Slider
+            style={{
+              width: "108%",
+              height: 40,
+              alignSelf: "center",
+              position: "absolute",
+              bottom: 4,
+            }}
+            //className="absolute w-[100%] h-10 bottom-4"
+            minimumValue={0}
+            maximumValue={duration}
+            value={currentTime}
+            minimumTrackTintColor="red"
+            maximumTrackTintColor="red"
+            thumbTintColor="red"
+            onSlidingComplete={handleSliderChange}
+          />
+
           <View className="absolute left-2 bottom-8">
             <Text className="text-white font-psemibold600 text-[10px]">
               {formatTime(currentTime)} / {formatTime(duration)}
