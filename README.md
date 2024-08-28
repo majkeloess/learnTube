@@ -57,7 +57,7 @@ npx expo start
 Scan QR code from terminal and open [Expo Go](https://expo.dev/go) on your device. You have to be connected to the same network as on your computer. 
 
 ## !Important
-App right now uses [react-native-video](https://github.com/TheWidlarzGroup/react-native-video) Video component. It works only in dev build for specific platform because it uses native modules. If you want app work properly in Expo Go you have to change Video player in the file below:
+App right now uses [react-native-video](https://github.com/TheWidlarzGroup/react-native-video) Video component. It works only in dev build for specific platform because it uses native modules. If you want app work properly in Expo Go you have to change Video player (from `VideoPlayer` to `VideoPlayerAV`) in the file below:
 
 ```tsx
 //  app/details/[id].tsx
@@ -76,4 +76,4 @@ App right now uses [react-native-video](https://github.com/TheWidlarzGroup/react
 
 # License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
