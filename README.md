@@ -4,6 +4,17 @@
 
 The development of the project began on _19 August 2024_.
 
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/e44da9dd-691a-404e-b767-8ab47af427b1" alt="s1"></td>
+    <td><img src="https://github.com/user-attachments/assets/fbfe5d42-a0d4-4ed2-99dc-a093171842c7" alt="s2"></td>
+    <td><img src="https://github.com/user-attachments/assets/31793aaf-dcf2-41af-84af-370df77e25d5" alt="s3"></td>
+    <td><img src="https://github.com/user-attachments/assets/c80751b5-060d-4e77-84d8-6a232499db45" alt="s4"></td>
+  </tr>
+</table>
+
+
+
 # ⚙️ Tech stack
 
 - Expo
