@@ -54,7 +54,25 @@ If you want to fetch data into app you need to have `YOUR_YT_API_V3_KEY`. You ca
 npx expo start
 ```
 
-Scan QR code from terminal and open [Expo Go](https://expo.dev/go) on your device. You have to be connected to the same network as on your computer.
+Scan QR code from terminal and open [Expo Go](https://expo.dev/go) on your device. You have to be connected to the same network as on your computer. 
+
+## !Important
+App right now uses [react-native-video](https://github.com/TheWidlarzGroup/react-native-video) Video component. It works only in dev build for specific platform because it uses native modules. If you want app work properly in Expo Go you have to change Video player in the file below:
+
+```tsx
+//  app/details/[id].tsx
+
+<SafeAreaView className="h-screen mt-6">
+      {/* temporary */}
+      {/* <VideoPlayerAV url={data.id} /> */}
+      <VideoPlayer currentTime={currentTime} setCurrentTime={setCurrentTime} />
+      <View className="mx-4 mt-4">
+        <Text className="text-[18px] font-psemibold600">
+          {data.snippet.title}
+        </Text>
+// ...
+
+```
 
 # License
 
